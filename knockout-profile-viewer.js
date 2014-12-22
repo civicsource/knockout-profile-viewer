@@ -18,7 +18,7 @@
         if (profile.fullName) {
           el.innerHTML = profile.fullName;
         } else {
-          var url = urls.civicsource + "profiles/" + (profile.username ? profile.username : profile);
+        	var url = urls.admin + "api/profiles/" + (profile.username ? profile.username : profile);
           $.ajax(url, {
             type: "GET",
             contentType: "application/json",
