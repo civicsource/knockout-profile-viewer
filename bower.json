@@ -1,23 +1,23 @@
 {
-  "name": "civicsource-knockout-profile-viewer",
-  "version": "1.0.0",
-  "main": "knockout-profile-viewer.js",
-  "description": "Knockout component to view a CivicSource Administrator or Auctioneer Profile.",
-  "keywords": [
-    "knockout",
-    "Profile"
-  ],
-  "authors": [
-    "Archon Information Systems"
-  ],
-  "license": "MIT",
-  "homepage": "https://github.com/civicsource/knockout-profile-viewer",
-  "ignore": [
-    "node_modules",
-    "bower_components"
-  ],
-  "dependencies": {
-    "knockout": "~3.2.0",
-    "jquery": "~1.10"
-  }
+	"name": "civicsource-knockout-profile-viewer",
+	"version": "1.0.2",
+	"main": "knockout-profile-viewer.js",
+	"description": "Knockout component to view a CivicSource Administrator or Auctioneer Profile.",
+	"keywords": [
+		"knockout",
+		"Profile"
+	],
+	"authors": [
+		"Archon Information Systems"
+	],
+	"license": "MIT",
+	"homepage": "https://github.com/civicsource/knockout-profile-viewer",
+	"ignore": [
+		"node_modules",
+		"bower_components"
+	],
+	"dependencies": {
+		"knockout": "~3.2.0",
+		"jquery": "~1.10"
+	}
 }
