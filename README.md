@@ -5,7 +5,7 @@
 ##Install with [Bower](http://bower.io/)
 
 ```
-bower install civicsource/knockout-profile-viewer --save
+bower install civicsource-knockout-profile-viewer --save
 ```
 
 Then add the folder to your project.
