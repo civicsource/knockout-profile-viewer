@@ -15,7 +15,7 @@
 			if (!profile) {
 				el.innerHTML = "No profile provided";
 			} else {
-				if (profile.fullName) {
+				if (ko.unwrap(profile.fullName)) {
 					el.innerHTML = profile.fullName;
 				} else {
 					var url = urls.admin + "profiles/" + (profile.username ? profile.username : profile);
@@ -32,6 +32,14 @@
 									obs[prop](data[prop]);
 								} else {
 									obs[prop] = ko.observable(data[prop]);
+								}
+							}
+						}
+						else if (obs){
+							var prop;
+							for (prop in data){
+								if(obs.hasOwnProperty(prop)){
+									obs[prop] = data[prop];
 								}
 							}
 						}
