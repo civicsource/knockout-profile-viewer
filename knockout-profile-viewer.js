@@ -1,4 +1,4 @@
-(function(root, factory) {
+(function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
 		define(["jquery", "knockout", "app/urls"], factory);
@@ -6,48 +6,44 @@
 		// Browser globals
 		factory(jQuery, ko);
 	}
-}(this, function($, ko, urls) {
+}(this, function ($, ko, urls) {
 	ko.bindingHandlers.profileViewer = {
 		// takes a username as the value and returns a profile object
-		update: function(el, valueAccessor, allBindings) {
-			var profile = ko.utils.unwrapObservable(valueAccessor());
+		update: function (el, valueAccessor, allBindings) {
+			var profile = ko.unwrap(valueAccessor());
 
 			if (!profile) {
+				//we got nothing
 				el.innerHTML = "No profile provided";
-			} else {
-				if (ko.unwrap(profile.fullName)) {
-					el.innerHTML = profile.fullName;
-				} else {
-					var url = urls.admin + "profiles/" + (profile.username ? profile.username : profile);
-					$.ajax(url, {
-						type: "GET",
-						contentType: "application/json",
-					}).then(function(data) {
-						var obs = valueAccessor();
-
-						if (ko.isObservable(obs)) {
-							var prop;
-							for (prop in data) {
-								if (obs.hasOwnProperty(prop) && ko.isWriteableObservable(obs[prop])) {
-									obs[prop](data[prop]);
-								} else {
-									obs[prop] = ko.observable(data[prop]);
-								}
-							}
-						}
-						else if (obs){
-							var prop;
-							for (prop in data){
-								if(obs.hasOwnProperty(prop)){
-									obs[prop] = data[prop];
-								}
-							}
-						}
-
-						el.innerHTML = data.fullName;
-					});
-				}
+				return;
 			}
+
+			if (profile.fullName) {
+				//we already have the fullName, just use that, don't do any extra requests
+				el.innerHTML = profile.fullName;
+				return;
+			}
+
+			var username = profile.username || profile;
+
+			if (!username) {
+				//we still got nothing
+				el.innerHTML = "No profile provided";
+				return;
+			}
+
+			$.ajax(urls.admin + "profiles/" + username, {
+				type: "GET",
+				contentType: "application/json",
+			}).then(function (data) {
+				var obs = valueAccessor();
+
+				if (ko.isWriteableObservable(obs)) {
+					obs(data);
+				}
+
+				el.innerHTML = data.fullName;
+			});
 		}
 	};
 }));
