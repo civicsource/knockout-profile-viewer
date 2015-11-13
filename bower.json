@@ -1,6 +1,6 @@
 {
 	"name": "civicsource-knockout-profile-viewer",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"main": "knockout-profile-viewer.js",
 	"description": "Knockout component to view a CivicSource Administrator or Auctioneer Profile.",
 	"keywords": [
