@@ -11,7 +11,7 @@
 		// takes a username as the value and returns a profile object
 		update: function (el, valueAccessor, allBindings) {
 			var profile = ko.unwrap(valueAccessor());
-			var showPlaceholder = allbindings.get("showPlaceholder");
+			var showPlaceholder = allBindings.get("showPlaceholder");
 
 			if (!profile && showPlaceholder) {
 				//we got nothing
