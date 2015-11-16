@@ -13,9 +13,11 @@
 			var profile = ko.unwrap(valueAccessor());
 			var showPlaceholder = allBindings.get("showPlaceholder");
 
-			if (!profile && showPlaceholder) {
+			if (!profile) {
 				//we got nothing
-				el.innerHTML = "No profile provided";
+				if (showPlaceholder) {
+					el.innerHTML = "No profile provided";
+				}
 				return;
 			}
 
