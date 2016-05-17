@@ -1,12 +1,12 @@
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
-		define(["jquery", "knockout", "app/urls"], factory);
+		define(["jquery", "knockout", "app/payload"], factory);
 	} else {
 		// Browser globals
 		factory(jQuery, ko);
 	}
-}(this, function ($, ko, urls) {
+}(this, function ($, ko, payload) {
 	ko.bindingHandlers.profileViewer = {
 		// takes a username as the value and returns a profile object
 		update: function (el, valueAccessor, allBindings) {
@@ -35,7 +35,7 @@
 				return;
 			}
 
-			$.ajax(urls.admin + "profiles/" + username, {
+			$.ajax(payload.urls.admin + "profiles/" + username, {
 				type: "GET",
 				contentType: "application/json",
 			}).then(function (data) {
