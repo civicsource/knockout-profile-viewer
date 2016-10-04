@@ -1,0 +1,29 @@
+{
+  "name": "civicsource-knockout-profile-viewer",
+  "version": "4.0.1",
+  "description": "Knockout component to view a CivicSource Administrator or Auctioneer Profile.",
+  "main": "knockout-profile-viewer.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/civicsource/knockout-profile-viewer.git"
+  },
+  "author": "CivicSource",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/civicsource/knockout-profile-viewer/issues"
+  },
+  "peerDependencies": {
+    "knockout": "3.x"
+  },
+  "dependencies": {
+    "jquery": ">=1.10"
+  },
+  "homepage": "https://github.com/civicsource/knockout-profile-viewer#readme",
+  "devDependencies": {
+    "eslint": "^3.7.1",
+    "eslint-config-civicsource": "1.x"
+  }
+}

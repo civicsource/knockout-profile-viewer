@@ -1,41 +1,38 @@
-(function (root, factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
-		define(["jquery", "knockout", "app/payload"], factory);
-	} else {
-		// Browser globals
-		factory(jQuery, ko);
-	}
-}(this, function ($, ko, payload) {
-	ko.bindingHandlers.profileViewer = {
+var ko = require("knockout");
+var $ = require("jquery");
+
+ko.bindingHandlers.profileViewer = {
 		// takes a username as the value and returns a profile object
-		update: function (el, valueAccessor, allBindings) {
-			var profile = ko.unwrap(valueAccessor());
-			var showPlaceholder = allBindings.get("showPlaceholder");
+	update: function (el, valueAccessor, allBindings) {
+		var profile = ko.unwrap(valueAccessor());
+		var showPlaceholder = allBindings.get("showPlaceholder");
 
-			if (!profile) {
-				//we got nothing
-				if (showPlaceholder) {
-					el.innerHTML = "No profile provided";
-				}
-				return;
-			}
-
-			if (profile.fullName) {
-				//we already have the fullName, just use that, don't do any extra requests
-				el.innerHTML = profile.fullName;
-				return;
-			}
-
-			var username = profile.username || profile;
-
-			if (!username && showPlaceholder) {
-				//we still got nothing
+		if (!profile) {
+			// we got nothing
+			if (showPlaceholder) {
 				el.innerHTML = "No profile provided";
-				return;
 			}
+			return;
+		}
 
-			$.ajax(payload.urls.admin + "profiles/" + username, {
+		if (profile.fullName) {
+			// we already have the fullName, just use that, don't do any extra requests
+			el.innerHTML = profile.fullName;
+			return;
+		}
+
+		var username = profile.username || profile;
+
+		if (!username && showPlaceholder) {
+			// we still got nothing
+			el.innerHTML = "No profile provided";
+			return;
+		}
+
+		if (window && window.civicsource && window.civicsource.payload) {
+			var profileUrl = window.civicsource.payload.urls.admin + "profiles/" + username;
+
+			$.ajax(profileUrl, {
 				type: "GET",
 				contentType: "application/json",
 			}).then(function (data) {
@@ -48,5 +45,5 @@
 				el.innerHTML = data.fullName;
 			});
 		}
-	};
-}));
+	}
+};
