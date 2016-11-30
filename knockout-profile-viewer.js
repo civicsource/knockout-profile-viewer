@@ -29,8 +29,8 @@ ko.bindingHandlers.profileViewer = {
 			return;
 		}
 
-		if (window && window.civicsource && window.civicsource.payload) {
-			var profileUrl = window.civicsource.payload.urls.admin + "profiles/" + username;
+		if (window && window.civicsource && window.civicsource.urls) {
+			var profileUrl = window.civicsource.urls.admin + "profiles/" + username;
 
 			$.ajax(profileUrl, {
 				type: "GET",
